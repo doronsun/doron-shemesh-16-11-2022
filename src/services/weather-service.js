@@ -1,4 +1,4 @@
-const API_KEY = "ZRbGSj3lvdo0kTm5GY7GdBH64uN8d6Xz";
+const API_KEY = "WkGPHSkZQGwIXbFkb8HmRjC7342Dj3JH";
 const domain = "http://dataservice.accuweather.com";
 export function getCityData(city) {
     // מתאם את הסטרינג של העיר להיות תואם למשהו שנכנס לקישור - למשל רווח
