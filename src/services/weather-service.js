@@ -15,19 +15,20 @@ export function getCityData(city) {
                 // "X-Forwarded-Port": "443",
                 // "X-Forwarded-Proto": "https",
             },
+            mode: "cors",
         }
     );
 }
 
 export function getWeatherData(locationKey) {
     return fetch(
-        `${domain}/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}`
+        `${domain}/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}`, { mode: "cors" }
     );
 }
 
 export function getCityAutocomplete(userInput) {
     const encoded = encodeURIComponent(userInput);
     return fetch(
-        `${domain}/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${encoded}`
+        `${domain}/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${encoded}`, { mode: "cors" }
     );
 }

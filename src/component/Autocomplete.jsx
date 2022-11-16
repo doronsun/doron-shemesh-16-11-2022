@@ -5,6 +5,9 @@ export default function Autocomplete(props) {
   const [availableCities, setAvailableCities] = useState([]);
 
   const handleChange = (e) => {
+    if (!/^[a-z\s]+$/i.test(e.target.value)) {
+      return;
+    }
     props.setCity(e.target.value);
     if (e.target.value.length) {
       getCityAutocomplete(props.city)
