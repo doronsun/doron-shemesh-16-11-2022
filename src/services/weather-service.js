@@ -11,6 +11,9 @@ export function getCityData(city) {
                 "Sec-Fetch-Dest": "empty",
                 "Sec-Fetch-Mode": "cors",
                 "Sec-Fetch-Site": "cross-site",
+                "X-Forwarded-For": "80.230.8.20",
+                "X-Forwarded-Port": "443",
+                "X-Forwarded-Proto": "https",
             },
         }
     );

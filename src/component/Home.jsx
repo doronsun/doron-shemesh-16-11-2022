@@ -23,7 +23,7 @@ export default function Home(props) {
         <button
           onClick={() => {
             const newFavorites = props.favorites.filter(
-              (name) => name !== props.cityData.EnglishName
+              (city) => city.name !== props.cityData.EnglishName
             );
             props.setFavorites(newFavorites);
           }}
