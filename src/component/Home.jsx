@@ -67,6 +67,7 @@ export default function Home(props) {
           </div>
           <div>{getFavoriteButton()}</div>
 
+          <h1>{props.weatherData.Headline.Text}</h1>
           <div className="forcast">
             {props.weatherData.DailyForecasts.map((day, index) => {
               return (
