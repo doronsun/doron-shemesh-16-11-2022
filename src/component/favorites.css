@@ -1,0 +1,14 @@
+.favorites {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.favorite {
+    border: 1px solid black;
+    padding: 0 10px;
+    cursor: pointer;
+    background-image: url(coverpic.jpeg);
+}
