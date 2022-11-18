@@ -5,9 +5,10 @@ export default function Autocomplete(props) {
   const [availableCities, setAvailableCities] = useState([]);
 
   const handleChange = (e) => {
-    if (!/^[a-z\s]+$/i.test(e.target.value)) {
+    if (e.target.value === "" && !/^[A-Za-z0-9]+$/i.test(e.target.value)) {
       return;
     }
+
     props.setCity(e.target.value);
     if (e.target.value.length) {
       getCityAutocomplete(props.city)
@@ -28,6 +29,8 @@ export default function Autocomplete(props) {
         type="text"
         name="city"
         id="city"
+        pattern="[A-Za-z0-9]"
+        required
         placeholder="city"
         value={props.city}
         onChange={handleChange}
