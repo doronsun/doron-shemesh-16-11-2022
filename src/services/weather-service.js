@@ -1,4 +1,4 @@
-const API_KEY = "1her2lvFTi81hTGBPHKzI97OLmPPuXSM";
+const API_KEY = "H25RfoEoxyfGCvJgvAjruo46OKoIQARA";
 const domain = "http://dataservice.accuweather.com";
 
 // get city data including Key from the API
