@@ -7,24 +7,32 @@ import { useEffect, useState } from "react";
 import { getCityData, getWeatherData } from "./services/weather-service";
 
 function App() {
-  // ['Tel Aviv']
   // [{ name: 'Tel Aviv', temp: 30 }]
   const [favorites, setFavorites] = useState([]);
+  // data about the city we get from the API - get the "Key" of the city
   const [cityData, setCityData] = useState();
+  // here we save the weather data of the requested city key
   const [weatherData, setWeatherData] = useState();
+  // connencted to the autocomplete input
   const [city, setCity] = useState("Tel Aviv");
 
   useEffect(() => {
+    // start with getting data of tel aviv
     getCity(city);
+    // run only once when the component mount
   }, []);
 
-  const getCity = async (city) => {
-    getCityData(city)
+  const getCity = async (cityName) => {
+    // ask the api about the city name -> we get city data including city "Key"
+    getCityData(cityName)
       .then((res) => res.json())
       .then((data) => {
+        // data is an array of results
         console.log(data);
+        // t-> [tokyo, tel aviv, tel mond]
         setCityData(data[0]);
-        getWeatherData(data[0].Key)
+        const cityKey = data[0].Key; // 123451
+        getWeatherData(cityKey)
           .then((res) => res.json())
           .then((weatherData) => {
             console.log(weatherData);
@@ -39,6 +47,7 @@ function App() {
 
   return (
     <div className="App">
+      {/* Added basename for this to work when deployed on github */}
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <NavBar />
         <hr />

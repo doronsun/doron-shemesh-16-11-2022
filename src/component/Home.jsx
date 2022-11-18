@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Autocomplete from "./Autocomplete";
 import "./home.css";
 
-const fToC = (F) => ((5 / 9) * (F - 32)).toFixed(1);
+const ferenhyteToCelcius = (F) => ((5 / 9) * (F - 32)).toFixed(1);
 
 const weekdays = {
   0: "Sun",
@@ -16,9 +16,12 @@ const weekdays = {
 
 export default function Home(props) {
   const getFavoriteButton = () => {
-    if (
-      props.favorites.find((city) => city.name === props.cityData.EnglishName)
-    ) {
+    // check if city is in favorites
+    const isFavoriteCity = props.favorites.find(
+      (city) => city.name === props.cityData.EnglishName
+    );
+
+    if (isFavoriteCity) {
       return (
         <button
           onClick={() => {
@@ -35,15 +38,13 @@ export default function Home(props) {
       return (
         <button
           onClick={() => {
-            props.setFavorites([
-              ...props.favorites,
-              {
-                name: props.cityData.EnglishName,
-                temp: fToC(
-                  props.weatherData.DailyForecasts[0].Temperature.Maximum.Value
-                ),
-              },
-            ]);
+            const newFavorite = {
+              name: props.cityData.EnglishName,
+              temp: ferenhyteToCelcius(
+                props.weatherData.DailyForecasts[0].Temperature.Maximum.Value
+              ),
+            };
+            props.setFavorites([...props.favorites, newFavorite]);
           }}
         >
           Add to favorites
@@ -59,7 +60,7 @@ export default function Home(props) {
           <div>
             <div>{props.cityData.EnglishName}</div>
             <div>
-              {fToC(
+              {ferenhyteToCelcius(
                 props.weatherData.DailyForecasts[0].Temperature.Maximum.Value
               )}
               C
@@ -69,12 +70,20 @@ export default function Home(props) {
 
           <h1>{props.weatherData.Headline.Text}</h1>
           <div className="forcast">
+            {/* 
+            DailyForecasts - array of 5 days with weather forcast, starting today
+            we get a cube for daily forcast with the name of the day
+              and the temperature of the day
+             */}
             {props.weatherData.DailyForecasts.map((day, index) => {
               return (
                 <div key={index} className="day-forcast">
+                  {/* convert date from "'2022-11-22T07:00:00+02:00'" to short day name "Tue" */}
                   <h3>{weekdays[new Date(day.Date).getDay().toString()]}</h3>
                   <div>
-                    <h2>{fToC(day.Temperature.Maximum.Value)} C</h2>
+                    <h2>
+                      {ferenhyteToCelcius(day.Temperature.Maximum.Value)} C
+                    </h2>
                   </div>
                 </div>
               );

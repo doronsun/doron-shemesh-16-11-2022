@@ -1,6 +1,7 @@
-const API_KEY = "PHcdsv1HCJmSI2tLvCPS69zDyP0YdwAp";
+const API_KEY = "1her2lvFTi81hTGBPHKzI97OLmPPuXSM";
 const domain = "http://dataservice.accuweather.com";
 
+// get city data including Key from the API
 export function getCityData(city) {
     // מתאם את הסטרינג של העיר להיות תואם למשהו שנכנס לקישור - למשל רווח
     const encodedCity = encodeURIComponent(city);
@@ -12,24 +13,28 @@ export function getCityData(city) {
                 "Sec-Fetch-Dest": "empty",
                 "Sec-Fetch-Mode": "cors",
                 "Sec-Fetch-Site": "cross-site",
-                // "X-Forwarded-For": "80.230.8.20",
-                // "X-Forwarded-Port": "443",
-                // "X-Forwarded-Proto": "https",
             },
+            // allow communication with another domain
             mode: "cors",
         }
     );
 }
 
+// get weather data according to some location key
 export function getWeatherData(locationKey) {
     return fetch(
-        `${domain}/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}`, { mode: "cors" }
+        `${domain}/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}`,
+        // allow communication with another domain
+        { mode: "cors" }
     );
 }
 
+// t -> tokyo, tel aviv
 export function getCityAutocomplete(userInput) {
     const encoded = encodeURIComponent(userInput);
     return fetch(
-        `${domain}/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${encoded}`, { mode: "cors" }
+        `${domain}/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${encoded}`,
+        // allow communication with another domain
+        { mode: "cors" }
     );
 }

@@ -4,10 +4,12 @@ import "./favorites.css";
 
 export default function Favorites(props) {
   const navigate = useNavigate();
+
   const handleClick = (cityName) => {
     props.getCity(cityName);
     navigate("/");
   };
+
   return (
     <div>
       <h1>favorites</h1>
