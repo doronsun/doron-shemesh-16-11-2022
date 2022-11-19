@@ -58,8 +58,8 @@ export default function Home(props) {
       return (
         <div className="city-data">
           <div>
-            <div>{props.cityData.EnglishName}</div>
-            <div>
+            <div style={{ color: "red" }}>{props.cityData.EnglishName}</div>
+            <div style={{ color: "red" }}>
               {ferenhyteToCelcius(
                 props.weatherData.DailyForecasts[0].Temperature.Maximum.Value
               )}
