@@ -58,17 +58,17 @@ export default function Home(props) {
       return (
         <div className="city-data">
           <div>
-            <div style={{ color: "red" }}>{props.cityData.EnglishName}</div>
-            <div style={{ color: "red" }}>
+            <h1 style={{ color: "red" }}>{props.cityData.EnglishName}</h1>
+            <h2 style={{ color: "red" }}>
               {ferenhyteToCelcius(
                 props.weatherData.DailyForecasts[0].Temperature.Maximum.Value
               )}
               C
-            </div>
+            </h2>
           </div>
           <div>{getFavoriteButton()}</div>
 
-          <h1>{props.weatherData.Headline.Text}</h1>
+          <h1 style={{ color: "orange" }}>{props.weatherData.Headline.Text}</h1>
           <div className="forcast">
             {/* 
             DailyForecasts - array of 5 days with weather forcast, starting today
